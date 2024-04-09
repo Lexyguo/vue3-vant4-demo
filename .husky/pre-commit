@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+lint_output=$(npm run lint 2>&1)
+
+if echo "$lint_output" | grep -iq "error"; then
+    echo "lint failed.Please fix errors."
+    echo "$lint_output"
+    exit 1
+fi
